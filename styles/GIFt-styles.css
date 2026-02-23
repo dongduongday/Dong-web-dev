@@ -7,7 +7,7 @@ body {
     font-family: Happy Monkey, cursive;
     align-items: center;
     min-height: 100vh;
-    background: #a2d2ff;
+    background: linear-gradient(#a2d2ff, #EFB0C9);
     color: white;
     text-shadow: 2px 2px 3px black;
     text-align: center;
@@ -36,7 +36,7 @@ body {
 .gift-section {
     margin-top: 1.5rem;
 }
-.gift-title {
+.gift-title-1 {
     margin-bottom: 0;
 }
 .gift-hint {
@@ -47,15 +47,39 @@ body {
     background-size: cover;
     margin: 0 auto;
     width: 60vw;
-    height: 60vw;
+    aspect-ratio: 1/1;
     max-width: 400px;
     max-height: 400px;
     border: 3px solid white;
     border-radius: 6px;
 }
-.gift-cover:hover {
+#gift-cover-1:hover {
     background-image: url("/assets/GIFt-materials/Happy-Sesame-Street.gif");
     background-size: cover;
+}
+#gift-cover-2:hover {
+    background-image: url("/assets/GIFt-materials/hot.gif");
+    background-size: cover;
+}
+#gift-cover-3:hover {
+    background-image: url("/assets/GIFt-materials/Genius.gif");
+    background-size: cover;
+}
+#gift-cover-4:hover {
+    background-image: url("/assets/GIFt-materials/John-Cena.gif");
+    background-size: cover;
+}
+#gift-cover-5 {
+    width: 60vw;
+    aspect-ratio: 2/1;
+}
+#gift-cover-5:hover {
+    background-image: url("/assets/GIFt-materials/cheers.gif");
+    background-size: cover;
+}
+.footer a {
+    font-style: italic;
+    color: white;
 }
 @media (max-width: 768px) {
     #bff-img {
