@@ -3,14 +3,19 @@
     <head>
         <title>Passenger Counter App</title>
         <link rel="stylesheet" href="/styles/pc-styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <div>
-            <h1>People entered:</h1>
+            <h1 id="section">People entered:</h1>
             <h2 id="count-el">0</h2>
+            <div class="main-function">
+                <button id="increment" onclick="increment()">ANOTHER ONE</button>
+                <button id="save" onclick="save()">SAVE</button>
+            </div>
+            <p id="error-el"></p>
+            <p id="entries-el">Previous Entries: </p>
             <script src="/script/pc.js"></script>
-            <button id="increment" onclick="increment()">ANOTHER ONE</button>
-            <button id="save" onclick="save()">SAVE</button>
         </div>
     </body>
 </html>

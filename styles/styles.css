@@ -92,3 +92,7 @@ body {
     background-image: url("/assets/index-materials/nasa.webp");
     background-size: cover;
 }
+.project-passenger-counter {
+    background-image: url("/assets/index-materials/passenger-counter.webp");
+    background-size: cover;
+}
