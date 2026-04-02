@@ -16,4 +16,3 @@ if (sum < 21) {
 }
 
 console.log(hasBlackJack)
-console.log(isAlive)
