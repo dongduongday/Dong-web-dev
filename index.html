@@ -1,14 +1,19 @@
 <!doctype html>
-<html>
+<html lang="vi">
     <head>
-        <link rel="stylesheet" href="styles/styles.css">
-        <title>Dong's Portfolio</title>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dong's Portfolio</title>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles/styles.css">
     </head>
     <body>
+        
         <header class="navbar">
             <div class="logo">
-                <a href="https://scp-vn.wikidot.com/ouroboros"><img src="/assets/index-materials/ouroboros.webp" alt="a snake eats its tail"></a>
+                <a href="https://scp-vn.wikidot.com/ouroboros">
+                    <img src="/assets/index-materials/ouroboros.webp" alt="Ouroboros Logo">
+                </a>
                 <span>DongDev</span>
             </div>
             <ul class="nav-links">
@@ -18,47 +23,112 @@
                 <li><a href="#achievements">Achievements</a></li>
             </ul>
         </header>
-        <div class="Welcome">
-            <span><h1>Welcome to my world</h1></span>
-        </div>
-        <div class="About-me">
-            <div class="Describe-me">
-                <h2>Who is he?</h2>
-                <p>Usually known as Dong, a good boy, a diligent student</p>
-                <p>But few knows about his hidden dreams, hobbies and projects</p>
-                <p>Find more about him down here</p>
+
+        <main>
+            <section id="home" class="Welcome">
+                <div class="welcome-content">
+                    <h1>Welcome to my world</h1>
+                    <p>Khám phá không gian sáng tạo và các dự án công nghệ của tôi</p>
+                    <a href="#projects" class="btn-primary">Xem dự án</a>
+                </div>
+            </section>
+
+            <section id="about" class="About-me">
+                <div class="Describe-me">
+                    <h2>Who is he?</h2>
+                    <p class="highlight">Usually known as <strong>Dong</strong>, a good boy, a diligent student.</p>
+                    <p>But few knows about his hidden dreams, hobbies and projects.</p>
+                    <p>Find more about him down here!</p>
+                </div>
+                <div class="avatar-wrapper">
+                    <img src="assets/index-materials/selfie.webp" alt="Dong's selfie">
+                </div>
+            </section>
+
+            <section id="projects" class="project-section">
+                <h2>My Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card project-AI">
+                        <a href="projects/AI.html" target="_blank">
+                            <div class="project-overlay">
+                                <h3>AI Recognition</h3>
+                                <p>Ứng dụng nhận diện thông minh</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="project-card project-arduino">
+                        <a href="projects/arduino.html" target="_blank">
+                            <div class="project-overlay">
+                                <h3>Arduino Smart Bulb</h3>
+                                <p>Hệ thống đèn thông minh</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="project-card project-bc">
+                        <a href="projects/businesscard.html" target="_blank">
+                            <div class="project-overlay">
+                                <h3>Business Card</h3>
+                                <p>Trang danh thiếp cá nhân điện tử</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="project-card project-GIFt">
+                        <a href="projects/GIFt.html" target="_blank">
+                            <div class="project-overlay">
+                                <h3>GIFt Project</h3>
+                                <p>Hộp quà công nghệ bí mật</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="project-card project-ggl">
+                        <a href="projects/google.com.html" target="_blank">
+                            <div class="project-overlay">
+                                <h3>Google Clone</h3>
+                                <p>Giao diện mô phỏng tìm kiếm</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="project-card project-space">
+                        <a href="projects/space.html" target="_blank">
+                            <div class="project-overlay">
+                                <h3>Space Exploration</h3>
+                                <p>Ứng dụng khám phá vũ trụ NASA</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="achievements" class="achievements-section">
+                <h2>Achievements</h2>
+                <div class="achievements-list">
+                    <div class="achievement-item">
+                        <span class="icon">🎓</span>
+                        <div>
+                            <h4>Học tập xuất sắc</h4>
+                            <p>Duy trì thành tích tốt tại trường học và các khóa học lập trình.</p>
+                        </div>
+                    </div>
+                    <div class="achievement-item">
+                        <span class="icon">🏆</span>
+                        <div>
+                            <h4>Hoạt động ngoại khóa</h4>
+                            <p>Tích cực tham gia các câu lạc bộ công nghệ và phát triển cộng đồng.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="link">
+            <h3>Kết nối với mình nhé!</h3>
+            <div class="social-grid">
+                <a href="https://www.facebook.com/JohnyDuong.vn/" target="_blank" class="social-item">Facebook</a>
+                <a href="https://youtube.com/@dongduong2811?si=77Dm0Ub-FxcCVlk1" target="_blank" class="social-item">Youtube</a>
+                <a href="mailto:johnyduong.vn@gmail.com" target="_blank" class="social-item">Email Me</a>
+                <a href="https://github.com/donglearning-pro/Dong-web-dev" target="_blank" class="social-item">GitHub</a>
             </div>
-            <img src="assets/index-materials/selfie.webp" alt="a smiling boy wearing glasses in a blue jacket">
-        </div>
-        <h2>Projects</h2>
-        <div class="projects">
-            <div class="project-AI">
-                <a href="projects/AI.html" target="_blank"></a>
-            </div>
-            <div class="project-arduino">
-                <a href="projects/arduino.html" target="_blank"></a>
-            </div>
-            <div class="project-bc">
-                <a href="projects/businesscard.html" target="_blank"></a>
-            </div>
-            <div class="project-GIFt">
-                <a href="projects/GIFt.html" target="_blank"></a>
-            </div>
-            <div class="project-ggl">
-                <a href="projects/google.com.html" target="_blank"></a>
-            </div>
-            <div class="project-space">
-                <a href="projects/space.html" target="_blank"></a>
-            </div>
-            <div class="project-passenger-counter">
-                <a href="projects/passenger-counter.html" target="_blank"></a>
-            </div>
-        </div>
-        <div class="link">
-            <p>Contact me via <a href="https://www.facebook.com/JohnyDuong.vn/" target="_blank">Facebook</a></p>
-            <p>Subscribe me on <a href="https://youtube.com/@dongduong2811?si=77Dm0Ub-FxcCVlk1" target="_blank">Youtube</a></p>
-            <p>Send me your feedback to <a href="mailto:johnyduong.vn@gmail.com" target="_blank">johnyduong.vn@gmail.com</a></p>
-            <p>Source Code <a href="https://github.com/donglearning-pro/Dong-web-dev" target="_blank">Github</a></p>
-        </div>
+            <p class="copyright">© 2026 DongDev. All rights reserved.</p>
+        </footer>
     </body>
 </html>
