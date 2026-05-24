@@ -1,13 +1,14 @@
-/* Thiết lập biến màu sắc chung giúp dễ quản lý */
+/* Variables for easy styling management */
 :root {
-    --primary-color: #6366f1; /* Tím Indigo thời thượng */
+    --primary-color: #6366f1; /* Modern Indigo purple */
     --text-color: #1f2937;
     --light-bg: #f9fafb;
-    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    --card-hover-shadow: 0 20px 25px -5px rgba(99, 102, 241, 0.15), 0 10px 10px -5px rgba(99, 102, 241, 0.04);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset cơ bản và mượt mà khi cuộn */
+/* Base reset and smooth scrolling */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -26,7 +27,7 @@ body {
     line-height: 1.6;
 }
 
-/* SECTION CHUNG */
+/* GENERAL SECTIONS */
 section {
     padding: 80px 10%;
 }
@@ -49,7 +50,7 @@ h2::after {
     border-radius: 2px;
 }
 
-/* NAVBAR (Hiệu ứng mờ kính - Glassmorphism) */
+/* NAVBAR (Glassmorphism Effect) */
 .navbar {
     position: sticky;
     top: 0;
@@ -199,7 +200,7 @@ h2::after {
     transform: scale(1.03) rotate(2deg);
 }
 
-/* PROJECTS GRID (Sử dụng Grid thay cho Flex để responsive chuẩn hơn) */
+/* PROJECTS GRID */
 .project-section {
     background-color: var(--light-bg);
 }
@@ -226,7 +227,6 @@ h2::after {
     text-decoration: none;
 }
 
-/* Lớp phủ thông tin khi hover */
 .project-overlay {
     position: absolute;
     inset: 0;
@@ -258,49 +258,83 @@ h2::after {
     opacity: 1;
 }
 
-/* Ảnh nền Projects */
+/* Project BG Images */
 .project-AI { background-image: url("/assets/index-materials/AI-recognising-phone.webp"); background-size: cover; background-position: center; }
 .project-arduino { background-image: url("/assets/index-materials/smart-bulb.webp"); background-size: cover; background-position: center; }
 .project-bc { background-image: url("/assets/index-materials/business-card.webp"); background-size: cover; background-position: center; }
 .project-GIFt { background-image: url("/assets/index-materials/GIFt.webp"); background-size: cover; background-position: center; }
 .project-ggl { background-image: url("/assets/index-materials/google.webp"); background-size: cover; background-position: center; }
 .project-space { background-image: url("/assets/index-materials/nasa.webp"); background-size: cover; background-position: center; }
+.project-passenger-counter { background-image: url("/assets/index-materials/passenger-counter.webp"); background-size: cover; background-position: center; }
 
-/* ACHIEVEMENTS SECTION */
+/* ACHIEVEMENTS GRID (Nâng cấp thành các ô click được) */
 .achievements-section {
     background-color: white;
 }
 
-.achievements-list {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 700px;
-    margin: 0 auto;
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.achievement-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .achievement-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 20px;
-    padding: 20px;
+    padding: 24px;
     background-color: var(--light-bg);
-    border-radius: 12px;
+    border-radius: 16px;
     border-left: 5px solid var(--primary-color);
+    box-shadow: var(--card-shadow);
+    height: 100%; /* Đảm bảo các ô cao bằng nhau trong Grid */
+    transition: var(--transition-smooth);
 }
 
 .achievement-item .icon {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    line-height: 1;
 }
 
-.achievement-item h4 {
-    font-size: 1.1rem;
-    margin-bottom: 4px;
+.achievement-info h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 6px;
 }
 
-.achievement-item p {
-    color: #6b7280;
+.achievement-info p {
+    color: #4b5563;
     font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+/* Nút nhỏ chỉ dẫn Click xem minh chứng */
+.view-proof {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    transition: var(--transition-smooth);
+}
+
+/* Hiệu ứng di chuột vào ô Thành Tích */
+.achievement-card-link:hover .achievement-item {
+    transform: translateY(-5px);
+    box-shadow: var(--card-hover-shadow);
+    background-color: #ffffff;
+    border-left-color: #a855f7; /* Đổi màu viền khi hover sang ánh tím hồng */
+}
+
+.achievement-card-link:hover .view-proof {
+    padding-left: 5px; /* Hiệu ứng chữ dịch chuyển nhẹ */
+    color: #a855f7;
 }
 
 /* FOOTER */
@@ -345,14 +379,15 @@ h2::after {
     color: #6b7280;
 }
 
-/* RESPONSIVE CHO ĐIỆN THOẠI */
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
     .navbar { padding: 15px 5%; }
-    .nav-links { display: none; } /* Có thể làm thêm Menu Humberger sau */
+    .nav-links { display: none; } 
     section { padding: 50px 5%; }
     .Welcome h1 { font-size: 2.5rem; }
     .About-me { flex-direction: column-reverse; text-align: center; }
     .Describe-me h2 { text-align: center; }
     .Describe-me h2::after { margin: 10px auto; }
     .About-me img { width: 200px; height: 200px; }
+    .achievements-grid { grid-template-columns: 1fr; }
 }
