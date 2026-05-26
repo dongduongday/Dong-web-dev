@@ -273,6 +273,47 @@ body {
     font-size: 0.9rem;
 }
 
+/* CẬP NHẬT CSS CHO VÙNG SHOW CODE (Sửa lại vùng .code-block cũ) */
+.code-block {
+    /* Đổi nền tối hơn cho hợp theme Okaidia */
+    background-color: #1e1e1e !important; 
+    border-radius: 12px;
+    margin: 30px 0;
+    /* Thêm hiệu ứng đổ bóng cho chuyên nghiệp */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Bo góc cả phần code bên trong */
+    border: 1px solid #333;
+}
+
+/* Prism thường áp dụng style trực tiếp lên thẻ pre, chúng ta CSS thêm cho nó */
+pre[class*="language-"] {
+    margin: 0 !important; /* Xóa margin mặc định của Prism để nó chui gọn vào khung */
+    padding: 24px !important; /* Khoảng cách từ code tới mép khung */
+    background: transparent !important; /* Dùng nền tối của vùng .code-block bên ngoài */
+    font-family: 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+}
+
+/* Tùy chỉnh màu thanh cuộn scrollbar cho tối đồng bộ */
+pre::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+pre::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 4px;
+}
+pre::-webkit-scrollbar-hover {
+    background: #2a2a2a;
+}
+pre::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+pre::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-primary); /* Đổi thành biến đã có để hiển thị màu tím indigo */
+}
 /* RESPONSIVE LAYOUT */
 @media (max-width: 900px) {
     .featured-card {

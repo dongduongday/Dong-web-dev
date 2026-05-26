@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Building a DIY Smart Home — Dong's Blog</title>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/blogstyles.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />        <style>
+            /* Các style bổ sung riêng cho nội dung bài viết này */
+            .article-container {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 40px 24px;
+            }
+            .article-header {
+                text-align: center;
+                margin-bottom: 40px;
+            }
+            .article-header h1 {
+                font-size: 2.5rem;
+                font-weight: 800;
+                color: var(--text-main);
+                margin: 20px 0;
+                line-height: 1.3;
+            }
+            .article-content h2 {
+                font-size: 1.8rem;
+                margin: 40px 0 20px;
+                color: var(--text-main);
+                border-bottom: 2px solid #f3f4f6;
+                padding-bottom: 10px;
+            }
+            .article-content h3 {
+                font-size: 1.4rem;
+                margin: 30px 0 15px;
+                color: var(--text-main);
+            }
+            .article-content p {
+                font-size: 1.1rem;
+                color: #374151;
+                margin-bottom: 20px;
+                line-height: 1.8;
+            }
+            .media-block {
+                margin: 30px 0;
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: var(--shadow-md);
+                background: #f9fafb;
+                text-align: center;
+                border: 1px solid #e5e7eb;
+            }
+            .media-block img, .media-block video {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+            .media-caption {
+                padding: 12px;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+                font-style: italic;
+            }
+            .image-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+                margin: 30px 0;
+            }
+            .image-grid .media-block {
+                margin: 0;
+            }
+
+            @media (max-width: 600px) {
+                .image-grid { grid-template-columns: 1fr; }
+            }
+        </style>
+    </head>
+    <body>
+        
+        <header class="blog-navbar">
+            <div class="nav-container">
+                <div class="blog-logo">
+                    <a href="../index.html">Dong<span>.Blog</span></a>
+                </div>
+                <nav class="blog-nav-links">
+                    <a href="index.html">← Back to Blog</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="article-container">
+            <header class="article-header">
+                <span class="tag tag-arduino">Arduino & IoT</span>
+                <span class="read-time">May 2026 • 7 min read</span>
+                <h1>Building a DIY Smart Home: Sensors, Servos, and Power Struggles</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">From cardboard prototypes and voltage drops to controlling 220V high-voltage lamps. Here is the unfiltered reality of my Arduino Smart Home project.</p>
+            </header>
+
+            <article class="article-content">
+                <p>Mọi dự án vĩ đại đều bắt đầu từ... những tấm bìa carton. Hôm nay, tôi muốn chia sẻ với các bạn quá trình xây dựng nguyên mẫu Nhà thông minh (Smart Home) của mình bằng Arduino. Không chỉ có những thành công màu hồng, bài viết này còn là nhật ký của những lần mạch chập chờn, lỗi sụt áp, và cách "tư duy kỹ sư" đã giúp tôi khắc phục chúng.</p>
+
+                <div class="media-block">
+                    <video controls>
+                        <source src="../assets/blog-materials/Smart-home-Arduino/home-overview.mp4" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ thẻ video.
+                    </video>
+                    <div class="media-caption">Tổng quan ngôi nhà carton: LCD hiển thị bên ngoài, cảm biến siêu âm quét khoảng cách, servo mở cửa và còi chíp báo động bên trong.</div>
+                </div>
+
+                <h2>Phần 1: Cánh Cửa Ma Thuật và Cú Lừa Từ Nguồn Điện</h2>
+                <p>Hệ thống tự động đầu tiên tôi muốn làm là một cánh cửa tự động mở ra khi có người bước tới. Ý tưởng khá đơn giản: Sử dụng <strong>cảm biến siêu âm</strong> để đo khoảng cách, nếu có vật cản lại gần, Arduino sẽ kích hoạt <strong>Servo (động cơ bước)</strong> kéo cửa ra, đồng thời <strong>còi chíp (buzzer)</strong> bên trong sẽ kêu lên và màn hình <strong>LCD</strong> hiển thị thông báo.</p>
+
+                <div class="media-block">
+                    <img src="../assets/blog-materials/Smart-home-Arduino/smart-home-diagram.jpeg" alt="Sơ đồ đấu nối nhà thông minh">
+                    <div class="media-caption">Sơ đồ đấu nối hệ thống cảm biến siêu âm, LCD, Còi và Servo với board Arduino.</div>
+                </div>
+
+                <h3>Thực tế phũ phàng</h3>
+                <p>Tôi tự tin ráp mạch, dùng dây vải nối đầu quay Servo với cánh cửa như hình dưới:</p>
+
+                <div class="media-block" style="max-width: 500px; margin: 30px auto;">
+                    <img src="../assets/blog-materials/Smart-home-Arduino/servo-attaching.jpg" alt="Servo gắn bằng dây">
+                </div>
+
+                <p>Và đây là kết quả của lần test đầu tiên: Cửa mở lấp lửng do dây bị chùng. Nghiêm trọng hơn, <strong>màn hình LCD bị tối đen</strong> (sập nguồn), và cảm biến siêu âm <strong>liên tục báo khoảng cách bằng 0</strong> dù không có vật cản trước mặt.</p>
+
+                <div class="media-block">
+                    <video controls>
+                        <source src="../assets/blog-materials/Smart-home-Arduino/door-opening.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-caption">Cửa mở lấp lửng, hệ thống mất ổn định do sụt áp nguồn.</div>
+                </div>
+
+                <h3>Giải quyết Vấn đề 1: Bài toán sụt áp (Voltage Drop)</h3>
+                <p>Sau một hồi "debug", tôi nhận ra vấn đề không nằm ở code. Việc bắt LCD, cảm biến siêu âm và Servo dùng chung một nguồn <strong>5V</strong> từ board Arduino đã khiến mạch bị quá tải dòng (đặc biệt là khi Servo bắt đầu quay và hút dòng mạnh). Hệ quả là cảm biến siêu âm bị nhiễu tín hiệu và LCD mất nguồn.</p>
+                <p><strong>Giải pháp:</strong> Tôi quyết định tách nguồn. Tôi sử dụng thêm <strong>2 viên pin Lithium</strong> (loại 4.2V và 2000mAh cho mỗi pin) để cấp nguồn riêng biệt, đảm bảo hệ thống điện đủ tải và tín hiệu ổn định tuyệt đối.</p>
+
+                <h3>Giải quyết Vấn đề 2: Keo nến cứu cánh!</h3>
+                <p>Về phần cơ khí, sợi dây thừng mỏng manh không thể truyền lực đủ tốt. Tôi đã phải nhờ đến "vũ khí tối thượng" của mọi maker: Súng bắn keo nến, để cố định trực tiếp hệ thống truyền động giúp cánh cửa hoạt động trơn tru hơn.</p>
+
+                <div class="media-block">
+                    <video controls>
+                        <source src="../assets/blog-materials/Smart-home-Arduino/hot-glue-gun.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-caption">Nâng cấp cơ khí: Dùng keo nến thay thế cho dây truyền động.</div>
+                </div>
+
+                <h3>Source Code: Smart Door System</h3>
+                <p>Dưới đây là đoạn code điều khiển trung tâm cho toàn bộ hệ thống cửa bảo mật này:</p>
+                <div class="code-block">
+                    <pre><code class="language-cpp">
+#include &lt;Wire.h&gt; 
+#include &lt;LiquidCrystal_I2C.h&gt;
+#include &lt;Servo.h&gt;
+
+// Định nghĩa các chân cắm
+const int TRIG_PIN = 10;
+const int ECHO_PIN = 11;
+const int BUZZER_PIN = 8;
+const int SERVO_PIN = 9;
+
+// Cấu hình các thông số
+const int DISTANCE_THRESHOLD = 20; // Khoảng cách nhận diện (20cm)
+bool isDoorOpened = false;         // Biến Cờ
+
+LiquidCrystal_I2C lcd(0x27, 16, 2); 
+Servo myservo;
+
+void setup() {
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+  pinMode(BUZZER_PIN, OUTPUT);
+  
+  myservo.attach(SERVO_PIN);
+  myservo.write(95); // Vị trí cửa đóng ban đầu
+
+  lcd.init();
+  lcd.backlight();
+  lcd.setCursor(0, 0);
+  lcd.print("He thong: ON");
+}
+
+void loop() {
+  if (isDoorOpened == false) {
+    
+    digitalWrite(TRIG_PIN, LOW);
+    delayMicroseconds(2);
+    digitalWrite(TRIG_PIN, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(TRIG_PIN, LOW);
+    
+    long duration = pulseIn(ECHO_PIN, HIGH);
+    long distance = (duration / 2) / 29.1;
+
+    if (distance > 0 && distance <= DISTANCE_THRESHOLD) {
+      // Hiển thị LCD
+      lcd.clear();
+      lcd.setCursor(1, 0);
+      lcd.print("WELCOME HOME!");
+      
+      // Phát tiếng còi
+      digitalWrite(BUZZER_PIN, HIGH); delay(150);
+      digitalWrite(BUZZER_PIN, LOW); delay(100);
+      digitalWrite(BUZZER_PIN, HIGH); delay(150);
+      digitalWrite(BUZZER_PIN, LOW);
+
+      // Mở cửa
+      for (int pos = 95; pos <= 180; pos++) {
+        myservo.write(pos);
+        delay(15);
+      }
+
+      isDoorOpened = true; 
+      lcd.setCursor(0, 1);
+      lcd.print("Door: OPENED");
+    }
+  }
+  delay(100); 
+}
+            </code></pre>
+        </div>
+
+                <h2>Phần 2: Điều khiển Bóng đèn thực tế (Hệ thống Relay)</h2>
+                <p>Sau khi xong phần cửa bảo mật, tôi chuyển sang một thử thách thực tế hơn: Điều khiển bóng đèn dân dụng 220V. Dù đây là một module tách rời khỏi ngôi nhà carton, nhưng nó là hệ thống cốt lõi để tôi hiểu cách lập trình can thiệp vào điện lưới.</p>
+
+                <div class="image-grid">
+                    <div class="media-block">
+                        <img src="../assets/blog-materials/Smart-home-Arduino/stripping-wires.jpg" alt="Tuốt dây điện">
+                        <div class="media-caption">Bước 1: Tuốt lớp bọc dây điện (tay run run sợ cắt đứt luôn lõi đồng bên trong).</div>
+                    </div>
+                    <div class="media-block">
+                        <img src="../assets/blog-materials/Smart-home-Arduino/wiring-lamp-holder.jpg" alt="Đấu đui đèn">
+                        <div class="media-caption">Bước 2: Đấu nối vào đui đèn, nhớ siết ốc vít thật chặt không thì... xẹt điện!</div>
+                    </div>
+                    <div class="media-block">
+                        <img src="../assets/blog-materials/Smart-home-Arduino/lamp-holder.jpg" alt="Đui đèn hoàn chỉnh">
+                        <div class="media-caption">Bước 3: Đui đèn và phích cắm đã sẵn sàng. Nhìn cũng uy tín ra phết!</div>
+                    </div>
+                    <div class="media-block">
+                        <img src="../assets/blog-materials/Smart-home-Arduino/light-on.jpg" alt="Đèn phát sáng">
+                        <div class="media-caption">Bước 4: Cắm điện test thử. Sáng chói loá! (Thở phào nhẹ nhõm vì không nổ cầu chì nhà 😆).</div>
+                    </div>
+                </div>
+
+                <h3>Tích hợp "Trí khôn" bằng Relay & Cảm biến hồng ngoại</h3>
+                <p>Để Arduino (5V) đóng ngắt được dòng 220V, tôi sử dụng một <strong>Module Relay</strong>. Tôi thiết kế thêm một đèn LED đỏ mắc nối tiếp để test tín hiệu: mỗi khi bấm remote, LED đỏ sẽ nháy trước khi Relay nhảy.</p>
+
+                <div class="media-block">
+                    <img src="../assets/blog-materials/Smart-home-Arduino/bulb-remote-diagram.jpeg" alt="Sơ đồ điều khiển đèn hồng ngoại">
+                    <div class="media-caption">Sơ đồ: Arduino nhận tín hiệu IR, bật LED đỏ, sau đó đóng ngắt Relay để bật đèn.</div>
+                </div>
+
+                <div class="media-block">
+                    <video controls>
+                        <source src="../assets/blog-materials/Smart-home-Arduino/lamp-remote.mp4" type="video/mp4">
+                    </video>
+                    <div class="media-caption">Bật tắt đèn 220V bằng điều khiển hồng ngoại, thông qua hệ thống Relay.</div>
+                </div>
+
+                <h3>Source Code: Smart Lamp Control</h3>
+                <p>Đoạn code dưới đây xử lý tín hiệu từ Remote (IR), đồng thời tôi đã tích hợp thuật toán "Chống dội phím" (Debounce) bằng hàm <code>millis()</code> để tránh việc đèn bị bật/tắt liên tục khi vô tình giữ nút quá lâu.</p>
+                <div class="code-block">
+                    <pre><code class="language-cpp">
+#include &lt;IRremote.hpp&gt;
+
+const int Recv_Pin = 2;
+const int Ledpin = 3;
+
+// Biến chống dội (debounce)
+unsigned long lastTime = 0;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(Ledpin, OUTPUT);
+  digitalWrite(Ledpin, LOW); 
+  
+  IrReceiver.begin(Recv_Pin, true, 8);
+  Serial.println("He thong da san sang...");
+}
+
+void loop() {
+  if (IrReceiver.decode()) {
+    uint32_t dataRemote = IrReceiver.decodedIRData.decodedRawData; 
+    
+    if (dataRemote > 0) {
+      Serial.print("Ma nhan duoc: ");
+      Serial.println(dataRemote);
+      
+      // Chống dội: chỉ xử lý nếu lần bấm cách nhau > 250ms
+      if (millis() - lastTime > 250) {
+        switch(dataRemote) {
+          case 4077715200UL: // Nút Toggle
+            digitalWrite(Ledpin, !digitalWrite(Ledpin));
+            Serial.println("Nut 1: Dao trang thai den");
+            break;
+          
+          case 3877175040UL: // Nút Chớp tắt
+            digitalWrite(Ledpin, LOW);
+            delay(500);
+            digitalWrite(Ledpin, HIGH);
+            Serial.println("Nut 2: Chop tat den");
+            break;
+            
+          default:
+            Serial.println("Nut nay chua thiet lap.");
+            break;
+        }
+      }
+      lastTime = millis();
+    }
+    IrReceiver.resume(); 
+  }
+}
+                    </code></pre>
+                </div>
+
+                <h2>Kết luận</h2>
+                <p>Làm việc với phần cứng luôn dạy tôi một bài học lớn về sự kiên nhẫn. Code có thể đúng 100%, nhưng chỉ một sợi dây kết nối lỏng lẻo hay một nguồn cấp điện không đủ tải cũng đủ để phá hỏng toàn bộ hệ thống. Đó chính là vẻ đẹp khắc nghiệt nhưng đầy cuốn hút của thế giới Internet of Things (IoT)!</p>
+            </article>
+        </main>
+
+        <footer class="blog-footer">
+            <p>© 2026 DongDev Notes. Crafted for sharing insights.</p>
+        </footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>        
+<script>
+        // Cấu hình plugin normalize whitespace
+        Prism.plugins.NormalizeWhitespace.setDefaults({
+            'remove-trailing': true,
+            'remove-indent': true,
+            'left-trim': true,
+            'right-trim': true,
+        });
+    </script>
+    
+    <script src="../script/index.js"></script>
+    </body>
+</html>
