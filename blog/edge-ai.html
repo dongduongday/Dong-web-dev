@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edge AI & ML: Fraud Hunters and Gesture Masters — Dong's Blog</title>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../styles/blogstyles.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+        <style>
+            /* Các style bổ sung giữ nguyên từ template trước */
+            .article-container { max-width: 800px; margin: 0 auto; padding: 40px 24px; }
+            .article-header { text-align: center; margin-bottom: 40px; }
+            .article-header h1 { font-size: 2.5rem; font-weight: 800; color: var(--text-main); margin: 20px 0; line-height: 1.3; }
+            .article-content h2 { font-size: 1.8rem; margin: 40px 0 20px; color: var(--text-main); border-bottom: 2px solid #f3f4f6; padding-bottom: 10px; }
+            .article-content h3 { font-size: 1.4rem; margin: 30px 0 15px; color: var(--text-main); }
+            .article-content p, .article-content li { font-size: 1.1rem; color: #374151; margin-bottom: 16px; line-height: 1.8; }
+            .article-content ul { padding-left: 24px; margin-bottom: 24px; }
+            .media-block { margin: 30px 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); background: #f9fafb; text-align: center; border: 1px solid #e5e7eb; }
+            .media-block img, .media-block video { width: 100%; height: auto; display: block; }
+            .media-caption { padding: 12px; font-size: 0.9rem; color: var(--text-muted); font-style: italic; }
+            /* Bảng so sánh */
+            .compare-table { width: 100%; border-collapse: collapse; margin: 30px 0; font-size: 1rem; box-shadow: var(--shadow-sm); border-radius: 12px; overflow: hidden; }
+            .compare-table th, .compare-table td { padding: 16px; border: 1px solid #e5e7eb; text-align: left; }
+            .compare-table th { background-color: var(--text-main); color: #fff; font-weight: 600; }
+            .compare-table tr:nth-child(even) { background-color: #f9fafb; }
+        </style>
+    </head>
+    <body>
+        
+        <header class="blog-navbar">
+            <div class="nav-container">
+                <div class="blog-logo">
+                    <a href="../index.html">Dong<span>.Blog</span></a>
+                </div>
+                <nav class="blog-nav-links">
+                    <a href="index.html">← Back to Blog</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="article-container">
+            <header class="article-header">
+                <span class="tag tag-ai">Edge AI & ML</span>
+                <span class="read-time">May 2026 • 8 min read</span>
+                <h1>Edge AI & ML: Kẻ Săn Gian Lận và Bậc Thầy Điều Khiển Bằng Cử Chỉ</h1>
+                <p style="color: var(--text-muted); font-size: 1.1rem;">Hành trình đi qua hai thế giới: Từ việc nhào nặn hàng triệu dòng dữ liệu tài chính đến việc biến camera laptop thành đôi mắt thần kỳ nhận diện cử chỉ tay thời gian thực.</p>
+            </header>
+
+            <article class="article-content">
+                <p>Trong thế giới Trí tuệ nhân tạo, chúng ta thường nghe về những cụm server khổng lồ chạy mô hình ngôn ngữ lớn. Nhưng "vẻ đẹp" thực sự đối với một maker lại là <strong>Edge AI</strong> — đưa trí tuệ thông minh xuống chạy cục bộ, trực tiếp trên máy tính cá nhân của mình. Trong bài viết này, tôi sẽ tổng kết lại hai dự án mang hai sắc thái hoàn toàn khác biệt mà tôi vừa chinh phục.</p>
+
+                <h2>1. Kẻ Săn Dữ Liệu: Dự án Phát Hiện Gian Lận (Fraud Detection)</h2>
+                <p>Dự án này thiên về Phân tích Dữ liệu và Bảo mật. Nó tập trung vào việc xử lý dữ liệu lớn, xây dựng mô hình Học máy (Machine Learning) để "ngửi" thấy mùi gian lận từ các tập dữ liệu thô và phân loại các giao dịch hoặc hành vi bất thường.</p>
+
+                <h3>Quá trình rèn luyện mô hình</h3>
+                <ul>
+                    <li><strong>Làm sạch dữ liệu:</strong> Thu thập, xử lý các giá trị thiếu (missing values) và chuẩn hóa dữ liệu số để đưa về cùng một quy chuẩn.</li>
+                    <li><strong>Trị bệnh "Thiên vị":</strong> Giải quyết bài toán mất cân bằng dữ liệu (Imbalanced Data) — một thực tế đau đầu khi số ca gian lận luôn ít hơn hàng ngàn lần so với giao dịch hợp pháp.</li>
+                    <li><strong>Huấn luyện & Đánh giá:</strong> Thử nghiệm các mô hình phân loại hạng nặng như <em>Logistic Regression, Random Forest, XGBoost</em>. Không dùng Accuracy thông thường, tôi phải đánh giá bằng các chỉ số chuyên dụng và khắt khe hơn: Precision, Recall và F1-Score.</li>
+                </ul>
+
+                <h3>Khó khăn & Đánh đổi</h3>
+                <p>Thử thách lớn nhất là nếu không xử lý kỹ dữ liệu nhiễu và cực kỳ lệch, mô hình sẽ bị <strong>"học vẹt" (Overfitting)</strong> và khôn lỏi chọn cách luôn đoán là "không gian lận" để đạt tỷ lệ đúng 99%. Bài toán đau đầu của người làm bảo mật là việc tinh chỉnh (tối ưu hóa) sao cho giảm tối đa tỷ lệ "bỏ sót gian lận" (False Negative) mà không làm khách hàng khó chịu vì bị "báo động nhầm" (False Positive).</p>
+
+                <div class="media-block">
+                    <video controls muted loop autoplay>
+                        <source src="../assets/blog-materials/edge-ai/ai_alarm.mp4" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ thẻ video.
+                    </video>
+                    <div class="media-caption">Mở rộng bài toán cảnh báo: Thay vì dữ liệu số, tôi thử nghiệm AI phát hiện hành vi vật lý. Hệ thống nhận diện hành vi cầm điện thoại lên, ngay lập tức bật cảnh báo và chụp ảnh làm bằng chứng!</div>
+                </div>
+                <h3>Source Code: AI Evidence Collector</h3>
+                <p>Đoạn code dưới đây sử dụng mô hình <strong>YOLO11</strong> để phát hiện vật thể và <strong>OpenCV</strong> để ghi hình. Tôi đã thêm thuật toán so sánh thời gian (logic cooldown 2 giây) để tránh việc camera chụp liên tục hàng trăm tấm ảnh gây đầy bộ nhớ.</p>
+                <div class="code-block">
+                    <pre><code class="language-python">
+import cv2
+from ultralytics import YOLO
+import winsound
+import os
+import time
+
+# 1. Tạo thư mục 'canh_bao' nếu chưa có
+if not os.path.exists('canh_bao'):
+    os.makedirs('canh_bao')
+
+model = YOLO('yolo11s.pt') 
+cap = cv2.VideoCapture(0)
+
+last_saved_time = 0  # Biến ghi lại lần cuối chụp ảnh
+
+while cap.isOpened():
+    success, frame = cap.read()
+    if not success: break
+
+    results = model(frame, conf=0.25, verbose=False) 
+    found_phone = False
+
+    for r in results:
+        for box in r.boxes:
+            name = model.names[int(box.cls[0])]
+            if name in ['cell phone', 'remote']:
+                found_phone = True
+                break
+    
+    if found_phone:
+        current_time = time.time()
+        
+        # Cảnh báo âm thanh và chữ
+        winsound.Beep(1000, 200)
+        cv2.putText(frame, "DA CHUP ANH BANG CHUNG!", (50, 80), 
+                    cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
+        # 2. KIỂM TRA: Nếu cách lần chụp trước hơn 2 giây thì mới chụp tiếp
+        if current_time - last_saved_time > 2:
+            # Tạo tên file theo ngày giờ: ví dụ phone_17123456.jpg
+            file_name = f"canh_bao/phone_{int(current_time)}.jpg"
+            
+            # Lệnh chụp và lưu ảnh
+            cv2.imwrite(file_name, frame)
+            
+            print(f"--- Đã lưu bằng chứng: {file_name} ---")
+            last_saved_time = current_time # Cập nhật thời điểm chụp cuối
+
+    cv2.imshow('AI Evidence Collector', results[0].plot())
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+                    </code></pre>
+                </div>
+                <h2>2. Tương Tác Giác Quan: Điều Khiển Âm Lượng Bằng Cử Chỉ Tay</h2>
+                <p>Khác với sự tĩnh lặng của dữ liệu tài chính, dự án này ngập tràn tính tương tác. Tôi đã ứng dụng Trí tuệ nhân tạo thời gian thực (Real-time AI) để biến camera laptop thành một cảm biến, trực tiếp can thiệp vào phần cứng máy tính.</p>
+
+                <div class="media-block">
+                    <video controls muted loop autoplay>
+                        <source src="../assets/blog-materials/edge-ai/volume_control.mp4" type="video/mp4">
+                        Trình duyệt của bạn không hỗ trợ thẻ video.
+                    </video>
+                    <div class="media-caption">Thành quả: Tăng giảm âm lượng hệ thống cực mượt chỉ bằng thao tác kéo/thả ngón tay, đi kèm thanh phần trăm và FPS đo thời gian thực.</div>
+                </div>
+
+                <h3>Cách hệ thống vận hành</h3>
+                <ul>
+                    <li>Sử dụng thư viện <strong>OpenCV</strong> để bắt trọn từng khung hình từ Webcam liên tục.</li>
+                    <li>Nhúng mô hình <strong>MediaPipe</strong> của Google để dò tìm 21 điểm mốc (landmarks) trên bàn tay.</li>
+                    <li>Dùng hàm <code>math.hypot</code> để tính khoảng cách hình học giữa đỉnh ngón cái và ngón trỏ.</li>
+                    <li>Ánh xạ toán học <code>np.interp</code> để quy đổi khoảng cách pixel đó sang mức âm lượng và chiều cao của thanh giao diện.</li>
+                    <li>Dùng thư viện <strong>pycaw</strong> (Python Audio Control Wrapper) để móc nối vào hệ thống Windows và chỉnh âm.</li>
+                </ul>
+                <h3>Source Code: Gesture Volume Control</h3>
+                <p>Mấu chốt của đoạn script này là sử dụng <code>np.interp</code> để nội suy khoảng cách giữa ngón cái và ngón trỏ (với giới hạn từ 50px đến 200px) sang dải âm lượng thực tế của hệ thống.</p>
+                <div class="code-block">
+                    <pre><code class="language-python">
+import cv2
+import mediapipe as mp
+import math
+import numpy as np
+from ctypes import cast, POINTER
+from comtypes import CLSCTX_ALL
+from pycaw.pycaw import AudioUtilities, IAudioEndpointVolume
+
+# --- 1. SETUP CAMERA & MEDIAPIPE ---
+# Dùng cách import chuẩn
+mp_hands = mp.solutions.hands
+hands = mp_hands.Hands(max_num_hands=1, min_detection_confidence=0.7)
+mp_draw = mp.solutions.drawing_utils
+cap = cv2.VideoCapture(0)
+
+# --- 2. SETUP ÂM THANH (Bản chuẩn) ---
+try:
+    devices = AudioUtilities.GetSpeakers()
+    interface = devices.Activate(
+        IAudioEndpointVolume._iid_, CLSCTX_ALL, None)
+    volume = cast(interface, POINTER(IAudioEndpointVolume))
+    
+    # Lấy dải âm lượng
+    vol_range = volume.GetVolumeRange()
+    min_vol = vol_range[0]
+    max_vol = vol_range[1]
+except Exception as e:
+    print("Lỗi khởi tạo âm thanh:", e)
+    print("Hãy chắc chắn bạn đã chạy lệnh pip install comtypes==1.1.14 pycaw==20181226")
+    exit()
+
+# --- 3. VÒNG LẶP CHÍNH ---
+while True:
+    success, img = cap.read()
+    if not success:
+        break
+        
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    results = hands.process(img_rgb)
+    
+    lm_list = []
+    if results.multi_hand_landmarks:
+        for hand_lms in results.multi_hand_landmarks:
+            mp_draw.draw_landmarks(img, hand_lms, mp_hands.HAND_CONNECTIONS)
+            for id, lm in enumerate(hand_lms.landmark):
+                h, w, c = img.shape
+                cx, cy = int(lm.x * w), int(lm.y * h)
+                lm_list.append([id, cx, cy])
+
+    if len(lm_list) != 0:
+        # Lấy tọa độ ngón cái (4) và ngón trỏ (8)
+        x1, y1 = lm_list[4][1], lm_list[4][2]
+        x2, y2 = lm_list[8][1], lm_list[8][2]
+        cx, cy = (x1 + x2) // 2, (y1 + y2) // 2
+
+        # Vẽ hình
+        cv2.circle(img, (x1, y1), 15, (255, 0, 255), cv2.FILLED)
+        cv2.circle(img, (x2, y2), 15, (255, 0, 255), cv2.FILLED)
+        cv2.line(img, (x1, y1), (x2, y2), (255, 0, 255), 3)
+        cv2.circle(img, (cx, cy), 15, (255, 0, 255), cv2.FILLED)
+
+        # Tính toán độ dài
+        length = math.hypot(x2 - x1, y2 - y1)
+
+        # Chuyển đổi độ dài tay sang âm lượng
+        # 50 là chụm tay, 200 là duỗi tay (tùy chỉnh theo khoảng cách cam)
+        vol = np.interp(length, [50, 200], [min_vol, max_vol])
+        volume.SetMasterVolumeLevel(vol, None)
+
+        if length < 50:
+            cv2.circle(img, (cx, cy), 15, (0, 255, 0), cv2.FILLED)
+
+    cv2.imshow("Volume Control", img)
+    
+    # Nhấn 'q' để thoát
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+                    </code></pre>
+                </div>
+                <h3>Những cú "vấp ngã" của dân Dev</h3>
+                <p>Làm việc với hệ thống chưa bao giờ là dễ dàng. Đầu tiên là <strong>xung đột thư viện</strong> kinh điển giữa `pycaw` và `comtypes` tạo ra các lỗi (NameError, Activate) đỏ lừ terminal. Sau đó là các <strong>lỗi thụt lề (IndentationError)</strong> đặc trưng của Python khi tôi cố gắng lồng ghép thêm thuật toán tính FPS.</p>
+                <p>Trải nghiệm người dùng (UX) cũng là một thử thách. Ở bản nháp đầu tiên, âm lượng tăng quá gắt! Tôi nhận ra sự khác biệt giữa thang đo Decibel của Windows (tăng theo hàm Logarit) và cảm nhận âm thanh của tai người (Tuyến tính). Phải điều chỉnh lại thuật toán ánh xạ thì mọi thứ mới "mượt mà" như video trên.</p>
+
+                <h2>Tổng Kết Hành Trình</h2>
+                <p>Từ một người hoang mang trước những dòng thông báo lỗi đỏ rực, tôi đã kiên trì đi qua từng bước, hiểu rõ bản chất của hệ tọa độ ảnh, các thang đo âm thanh, cho đến cách làm chủ các khối lệnh Python và dữ liệu lớn.</p>
+
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Đặc điểm</th>
+                            <th>Fraud Detection (Phát Hiện Gian Lận)</th>
+                            <th>Hand Gesture Control (Cử Chỉ Tay)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Lĩnh vực</strong></td>
+                            <td>Data Science & Machine Learning</td>
+                            <td>Computer Vision & Real-time AI</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Công nghệ cốt lõi</strong></td>
+                            <td>Pandas, Numpy, Scikit-learn, XGBoost</td>
+                            <td>OpenCV, MediaPipe, Pycaw</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Giá trị đúc kết</strong></td>
+                            <td>Nâng cao tư duy phân tích, xử lý dữ liệu nhiễu/lệch. Hiểu cách hệ thống ngân hàng bảo vệ dòng tiền.</td>
+                            <td>Nắm vững hệ tọa độ ảnh (trục Y lật ngược), giao tiếp API Windows (COM) và kỹ năng Debug phần cứng.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p>Hai dự án này là những viên gạch nền tảng cực kỳ vững chắc: một bên rèn luyện cho tôi sự điềm tĩnh và tư duy logic của một <strong>Nhà Khoa học Dữ liệu</strong>, một bên cung cấp kỹ năng "thực chiến" và độ nhạy bén của một <strong>Kỹ sư AI/Computer Vision</strong>.</p>
+            </article>
+        </main>
+
+        <footer class="blog-footer">
+            <p>© 2026 DongDev Notes. Crafted for sharing insights.</p>
+        </footer>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    </body>
+</html>
