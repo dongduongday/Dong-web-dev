@@ -113,7 +113,7 @@
                 <p>Hệ thống tự động đầu tiên tôi muốn làm là một cánh cửa tự động mở ra khi có người bước tới. Ý tưởng khá đơn giản: Sử dụng <strong>cảm biến siêu âm</strong> để đo khoảng cách, nếu có vật cản lại gần, Arduino sẽ kích hoạt <strong>Servo (động cơ bước)</strong> kéo cửa ra, đồng thời <strong>còi chíp (buzzer)</strong> bên trong sẽ kêu lên và màn hình <strong>LCD</strong> hiển thị thông báo.</p>
 
                 <div class="media-block">
-                    <img src="../assets/blog-materials/Smart-home-Arduino/smart-home-diagram.jpeg" alt="Sơ đồ đấu nối nhà thông minh">
+                    <img src="../assets/blog-materials/Smart-home-Arduino/smart-home-diagram.webp" alt="Sơ đồ đấu nối nhà thông minh">
                     <div class="media-caption">Sơ đồ đấu nối hệ thống cảm biến siêu âm, LCD, Còi và Servo với board Arduino.</div>
                 </div>
 
@@ -121,7 +121,7 @@
                 <p>Tôi tự tin ráp mạch, dùng dây vải nối đầu quay Servo với cánh cửa như hình dưới:</p>
 
                 <div class="media-block" style="max-width: 500px; margin: 30px auto;">
-                    <img src="../assets/blog-materials/Smart-home-Arduino/servo-attaching.jpg" alt="Servo gắn bằng dây">
+                    <img src="../assets/blog-materials/Smart-home-Arduino/servo-attaching.webp" alt="Servo gắn bằng dây">
                 </div>
 
                 <p>Và đây là kết quả của lần test đầu tiên: Cửa mở lấp lửng do dây bị chùng. Nghiêm trọng hơn, <strong>màn hình LCD bị tối đen</strong> (sập nguồn), và cảm biến siêu âm <strong>liên tục báo khoảng cách bằng 0</strong> dù không có vật cản trước mặt.</p>
@@ -227,19 +227,19 @@ void loop() {
 
                 <div class="image-grid">
                     <div class="media-block">
-                        <img src="../assets/blog-materials/Smart-home-Arduino/stripping-wires.jpg" alt="Tuốt dây điện">
+                        <img src="../assets/blog-materials/Smart-home-Arduino/stripping-wires.webp" alt="Tuốt dây điện">
                         <div class="media-caption">Bước 1: Tuốt lớp bọc dây điện (tay run run sợ cắt đứt luôn lõi đồng bên trong).</div>
                     </div>
                     <div class="media-block">
-                        <img src="../assets/blog-materials/Smart-home-Arduino/wiring-lamp-holder.jpg" alt="Đấu đui đèn">
+                        <img src="../assets/blog-materials/Smart-home-Arduino/wiring-lamp-holder.webp" alt="Đấu đui đèn">
                         <div class="media-caption">Bước 2: Đấu nối vào đui đèn, nhớ siết ốc vít thật chặt không thì... xẹt điện!</div>
                     </div>
                     <div class="media-block">
-                        <img src="../assets/blog-materials/Smart-home-Arduino/lamp-holder.jpg" alt="Đui đèn hoàn chỉnh">
+                        <img src="../assets/blog-materials/Smart-home-Arduino/lamp-holder.webp" alt="Đui đèn hoàn chỉnh">
                         <div class="media-caption">Bước 3: Đui đèn và phích cắm đã sẵn sàng. Nhìn cũng uy tín ra phết!</div>
                     </div>
                     <div class="media-block">
-                        <img src="../assets/blog-materials/Smart-home-Arduino/light-on.jpg" alt="Đèn phát sáng">
+                        <img src="../assets/blog-materials/Smart-home-Arduino/light-on.webp" alt="Đèn phát sáng">
                         <div class="media-caption">Bước 4: Cắm điện test thử. Sáng chói loá! (Thở phào nhẹ nhõm vì không nổ cầu chì nhà 😆).</div>
                     </div>
                 </div>
@@ -248,7 +248,7 @@ void loop() {
                 <p>Để Arduino (5V) đóng ngắt được dòng 220V, tôi sử dụng một <strong>Module Relay</strong>. Tôi thiết kế thêm một đèn LED đỏ mắc nối tiếp để test tín hiệu: mỗi khi bấm remote, LED đỏ sẽ nháy trước khi Relay nhảy.</p>
 
                 <div class="media-block">
-                    <img src="../assets/blog-materials/Smart-home-Arduino/bulb-remote-diagram.jpeg" alt="Sơ đồ điều khiển đèn hồng ngoại">
+                    <img src="../assets/blog-materials/Smart-home-Arduino/bulb-remote-diagram.webp" alt="Sơ đồ điều khiển đèn hồng ngoại">
                     <div class="media-caption">Sơ đồ: Arduino nhận tín hiệu IR, bật LED đỏ, sau đó đóng ngắt Relay để bật đèn.</div>
                 </div>
 
